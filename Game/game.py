@@ -1,7 +1,7 @@
 import pygame, sys
-import scenetitle
-import scenelevelselect
-import scenebattle
+
+from script import scenetitle, scenelevelselect, scenebattle
+from script.module import *
 
 class Game():
     def __init__(self):
@@ -13,6 +13,8 @@ class Game():
         self.FPS = 60
         self.delta = 1 / self.FPS
 
+        self.load_font()
+
         self.scene = 'title'
         self.state = ''
         self.main()
@@ -23,15 +25,31 @@ class Game():
             self.handle_input()
             self.handle_scene()
 
+    def load_font(self):
+        Font.neodgm_32 = pygame.font.Font('Font/neodgm.ttf', 32)
+
     def handle_input(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse = pygame.mouse.get_pos()
+                button = event.button
+                
+                if self.scene == 'title':
+                    scenetitle.mouse_up(self, mouse, button)
+
+                elif self.scene == 'level_select':
+                    scenelevelselect.mouse_up(self, mouse, button)
+
     def handle_scene(self):
         if self.scene == 'title':
             scenetitle.loop(self)
+
+        elif self.scene == 'level_select':
+            scenelevelselect.loop(self)
 
 if __name__ == '__main__':
     Game()
