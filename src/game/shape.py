@@ -1,5 +1,7 @@
 import math
 
+# Vector class
+# Can be act as points.
 class Vec2():
     def __init__(self, x: float, y: float):
         self.x: float = x
@@ -34,6 +36,8 @@ class Vec2():
             return Vec2(0, 0)
         return self / l
 
+# Rectangle shape
+# The member pos (position) is the center of rectangle.
 class Rect2():
     def __init__(self, x: float, y: float, w: float, h: float):
         self.pos: Vec2 = Vec2(x, y)

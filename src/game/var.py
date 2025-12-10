@@ -3,7 +3,7 @@ from pygame.font import Font
 from pygame._sdl2.video import Texture, Window, Renderer
 from .scene import Scene
 
-font: Font = None
+neodgm_32: Font = None
 
 scene: Scene = None
 state: str = ''
